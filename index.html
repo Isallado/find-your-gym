@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8e5eb">
+  <meta name="description" content="Encuentra gimnasios y estudios de Pilates, cycling y CrossFit en Madrid. Compara zonas y precios.">
+  <title>Find Your Gym — Encuentra tu lugar para moverte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Find Your Gym, inicio"><span class="brand-mark">f.</span><span>find your <b>gym</b></span></a>
+    <nav><a href="#explore">Explorar</a><a href="#about">La guía</a><a href="#inspiration">Inspiración</a></nav>
+    <a class="top-cta" href="#explore">Encuentra tu espacio <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> MADRID · MOVE YOUR WAY</p>
+        <h1>Tu próximo lugar<br>para <em>sentirte bien.</em></h1>
+        <p class="hero-text">De una sesión de Pilates a tu nuevo gimnasio favorito. Explora espacios para moverte por Madrid y encuentra el que encaja contigo.</p>
+        <a class="hero-link" href="#explore">Descubrir lugares <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-label="Ilustración abstracta de movimiento">
+        <div class="sun-disc"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-sticker">MOVE<br>WITH<br>JOY <span>✳</span></div>
+        <div class="hero-caption">Encuentra tu ritmo.<br>Hazlo a tu manera.</div>
+      </div>
+    </section>
+
+    <section class="explore-section" id="explore">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE CITY IS YOUR PLAYGROUND</p><h2>Encuentra tu <em>match.</em></h2></div>
+        <p class="section-note"><span id="totalPlaces">30</span> espacios para entrenar, descubrir<br>y probar algo nuevo.</p>
+      </div>
+
+      <div class="search-row">
+        <label class="searchbox"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="Busca por nombre, barrio o actividad…" autocomplete="off"></label>
+        <button class="clear-btn" id="clearFilters" type="button">Limpiar filtros ↺</button>
+      </div>
+
+      <div class="filters" aria-label="Filtros de búsqueda">
+        <label class="filter-control"><span>Actividad</span><select id="typeFilter"><option value="">Todas</option><option>Gym</option><option>Pilates</option><option>CrossFit</option><option>Cycling</option><option>Boutique</option></select></label>
+        <label class="filter-control"><span>Zona</span><select id="districtFilter"><option value="">Todas las zonas</option></select></label>
+        <label class="filter-control"><span>Presupuesto</span><select id="priceFilter"><option value="">Cualquier precio</option><option value="40">Hasta 40 €</option><option value="70">Hasta 70 €</option><option value="120">Hasta 120 €</option><option value="999">Premium</option></select></label>
+        <div class="result-count" id="resultCount">30 lugares</div>
+      </div>
+
+      <div class="content-grid">
+        <div class="results-panel">
+          <div class="results-top"><span id="resultsTitle">Lugares para descubrir</span><span class="small-muted">Madrid, España</span></div>
+          <div class="gym-list" id="gymList" aria-live="polite"></div>
+          <div class="empty-state" id="emptyState" hidden><span>♡</span><h3>No encontramos ese lugar</h3><p>Prueba con otra palabra o cambia algún filtro.</p></div>
+        </div>
+        <div class="map-panel">
+          <div class="map-heading"><div><span class="map-kicker">EXPLORE THE CITY</span><strong>Madrid, a tu ritmo</strong></div><span class="map-count" id="mapCount">30 pins</span></div>
+          <div id="map" role="application" aria-label="Mapa de gimnasios y estudios en Madrid"></div>
+          <div class="map-legend"><span><i class="legend-dot gym-dot"></i> Gym</span><span><i class="legend-dot pilates-dot"></i> Pilates</span><span><i class="legend-dot crossfit-dot"></i> CrossFit</span><span><i class="legend-dot cycling-dot"></i> Cycling</span><span><i class="legend-dot boutique-dot"></i> Boutique</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-bloom">✳</div>
+      <div><p class="eyebrow">A LITTLE NOTE</p><h2>Hay muchas formas<br>de <em>ponerte en movimiento.</em></h2></div>
+      <p>Máquinas, clases, reformer, música o entrenamiento funcional. Lo importante es encontrar un espacio al que te apetezca volver. Empieza por explorar.</p>
+    </section>
+
+    <section class="inspiration-section" id="inspiration">
+      <div class="inspiration-heading">
+        <p class="eyebrow">A LITTLE MORE WELLNESS</p>
+        <h2>Beyond the <em>workout.</em></h2>
+        <p>Ideas para cuidar de ti dentro y fuera del estudio: movimiento, recetas y pequeños rituales de bienestar.</p>
+      </div>
+      <div class="inspiration-grid">
+        <article class="inspiration-card instagram-card">
+          <div class="inspiration-art instagram-art"><span class="social-mark">◎</span><span class="art-note">MOVE · EAT · GLOW</span></div>
+          <div class="inspiration-copy"><p class="eyebrow">THE CREATOR'S JOURNAL</p><h3>The Healthy Food Tour</h3><p>Rutinas, visitas a estudios como Tracy Anderson, recetas saludables y momentos cotidianos de bienestar.</p><a href="https://www.instagram.com/thehealthyfoodtour/" target="_blank" rel="noopener noreferrer">Explore Instagram ↗</a></div>
+        </article>
+        <article class="inspiration-card skincare-card">
+          <div class="inspiration-art skincare-art"><span class="skincare-word">SKIN<br>CARE</span><span class="art-note">A DAILY RITUAL</span></div>
+          <div class="inspiration-copy"><p class="eyebrow">THE SKINCARE EDIT</p><h3>Care beyond the gym</h3><p>Descubre la página de skincare vinculada a The Healthy Food Tour y encuentra inspiración para tus rituales de cuidado personal.</p><a href="https://riman.com/thehealthyft/es-ec" target="_blank" rel="noopener noreferrer">Discover skincare ↗</a></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">f.</span><span>find your <b>gym</b></span></a><span>Made to move · Madrid<br><small>Datos de centros: webs oficiales. Mapa: © OpenStreetMap contributors.</small></span><a href="#explore">Volver arriba ↑</a></footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="gyms.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
