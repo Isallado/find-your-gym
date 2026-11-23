@@ -16,7 +16,11 @@
 <body>
   <header class="topbar">
     <a class="brand" href="#" aria-label="Find Your Gym, inicio"><span class="brand-mark">f.</span><span>find your <b>gym</b></span></a>
-    <nav><a href="#explore">Explorar</a><a href="#about">La guía</a><a href="#inspiration">Inspiración</a></nav>
+   <nav>
+  <a href="#explore">Explorar</a>
+  <a href="#guide">Guía</a>
+  <a href="#inspiration">Inspiración</a>
+</nav>
     <a class="top-cta" href="#explore">Encuentra tu espacio <span>↗</span></a>
   </header>
 
@@ -66,30 +70,55 @@
         </div>
       </div>
     </section>
+<section class="about-section" id="guide">
+  <div class="about-bloom">✳</div>
 
-    <section class="about-section" id="about">
-      <div class="about-bloom">✳</div>
-      <div><p class="eyebrow">A LITTLE NOTE</p><h2>Hay muchas formas<br>de <em>ponerte en movimiento.</em></h2></div>
-      <p>Máquinas, clases, reformer, música o entrenamiento funcional. Lo importante es encontrar un espacio al que te apetezca volver. Empieza por explorar.</p>
-    </section>
+  <div>
+    <p class="eyebrow">YOUR WELLNESS GUIDE</p>
+    <h2>Descubre nuevas formas<br>de <em>cuidar de ti.</em></h2>
+  </div>
 
-    <section class="inspiration-section" id="inspiration">
-      <div class="inspiration-heading">
-        <p class="eyebrow">A LITTLE MORE WELLNESS</p>
-        <h2>Beyond the <em>workout.</em></h2>
-        <p>Ideas para cuidar de ti dentro y fuera del estudio: movimiento, recetas y pequeños rituales de bienestar.</p>
-      </div>
-      <div class="inspiration-grid">
-        <article class="inspiration-card instagram-card">
-          <div class="inspiration-art instagram-art"><span class="social-mark">◎</span><span class="art-note">MOVE · EAT · GLOW</span></div>
-          <div class="inspiration-copy"><p class="eyebrow">THE CREATOR'S JOURNAL</p><h3>The Healthy Food Tour</h3><p>Rutinas, visitas a estudios como Tracy Anderson, recetas saludables y momentos cotidianos de bienestar.</p><a href="https://www.instagram.com/thehealthyfoodtour/" target="_blank" rel="noopener noreferrer">Explore Instagram ↗</a></div>
-        </article>
-        <article class="inspiration-card skincare-card">
-          <div class="inspiration-art skincare-art"><span class="skincare-word">SKIN<br>CARE</span><span class="art-note">A DAILY RITUAL</span></div>
-          <div class="inspiration-copy"><p class="eyebrow">THE SKINCARE EDIT</p><h3>Care beyond the gym</h3><p>Descubre la página de skincare vinculada a The Healthy Food Tour y encuentra inspiración para tus rituales de cuidado personal.</p><a href="https://riman.com/thehealthyft/es-ec" target="_blank" rel="noopener noreferrer">Discover skincare ↗</a></div>
-        </article>
-      </div>
-    </section>
+  <div class="guide-profiles">
+    <article class="guide-profile">
+      <p class="eyebrow">WELLNESS · FOOD · LIFESTYLE</p>
+      <h3>The Healthy Food Tour</h3>
+      <p>Rutinas, visitas a estudios como Tracy Anderson,
+      recetas saludables y momentos cotidianos de bienestar.</p>
+      <a href="https://www.instagram.com/thehealthyfoodtour/"
+         target="_blank" rel="noopener noreferrer">
+         Explore Instagram ↗
+        
+      </a>
+    </article>
+
+    <article class="guide-profile">
+      <p class="eyebrow">SKINCARE · SELF CARE</p>
+      <h3>The Skincare Edit</h3>
+      <p>Descubre la página de skincare vinculada a
+      The Healthy Food Tour e inspírate para tus rituales
+      de cuidado personal.</p>
+      <a href="https://riman.com/thehealthyft/es-ec"
+         target="_blank" rel="noopener noreferrer">
+         Discover skincare ↗
+      </a>
+    </article>
+  </div>
+</section>
+   <section class="inspiration-section" id="inspiration">
+  <div class="inspiration-heading">
+    <p class="eyebrow">A LITTLE REMINDER FOR YOU</p>
+    <h2>A moment of <em>inspiration.</em></h2>
+    <p>Un pequeño recordatorio para acompañarte en tu camino.</p>
+  </div>
+
+  <div class="daily-quote-card">
+    <span class="quote-decoration">“</span>
+    <p class="quote-label">YOUR DAILY INSPIRATION</p>
+    <h3 id="dailyQuote">Progress, not perfection.</h3>
+    <p class="quote-footer">MOVE WITH JOY · FIND YOUR RHYTHM</p>
+    <button id="newQuote" type="button">Otra frase ↗</button>
+  </div>
+</section>
   </main>
 
   <footer><a class="brand footer-brand" href="#"><span class="brand-mark">f.</span><span>find your <b>gym</b></span></a><span>Made to move · Madrid<br><small>Datos de centros: webs oficiales. Mapa: © OpenStreetMap contributors.</small></span><a href="#explore">Volver arriba ↑</a></footer>
@@ -99,3 +128,135 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+// DAILY INSPIRATION
+const dailyQuotes = [
+  "Progress, not perfection.",
+  "Small steps still move you forward.",
+  "Your body deserves kindness, not punishment.",
+  "Move your body, lift your spirit.",
+  "You are stronger than you think.",
+  "Your journey is your own.",
+  "Consistency is more important than perfection.",
+  "Make time for the things that make you feel alive.",
+  "You don't have to be perfect. Just keep showing up.",
+  "A little progress each day adds up to big results."
+];
+
+const dailyQuote = document.getElementById("dailyQuote");
+const newQuote = document.getElementById("newQuote");
+
+if (dailyQuote && newQuote) {
+  const today = new Date();
+  const dateNumber = Date.UTC(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  ) / 86400000;
+
+  let currentQuoteIndex = Math.floor(dateNumber) % dailyQuotes.length;
+
+  function showQuote(index) {
+    dailyQuote.textContent = dailyQuotes[index];
+  }
+
+  showQuote(currentQuoteIndex);
+
+  newQuote.addEventListener("click", () => {
+    currentQuoteIndex = (currentQuoteIndex + 1) % dailyQuotes.length;
+    showQuote(currentQuoteIndex);
+  });
+}
+
+/* GUIDE PROFILES */
+.guide-profiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 35px;
+  width: 100%;
+}
+
+.guide-profile {
+  background: #fff9f8;
+  padding: 32px;
+  border-radius: 18px;
+}
+
+.guide-profile h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin: 12px 0;
+}
+
+.guide-profile p {
+  line-height: 1.7;
+}
+
+.guide-profile a {
+  display: inline-block;
+  margin-top: 15px;
+  color: inherit;
+  font-weight: 600;
+}
+
+/* DAILY INSPIRATION */
+.daily-quote-card {
+  max-width: 760px;
+  margin: 35px auto 0;
+  padding: 65px 35px;
+  text-align: center;
+  background: #f8e5eb;
+  border-radius: 22px;
+  position: relative;
+}
+
+.quote-decoration {
+  font-family: 'Playfair Display', serif;
+  font-size: 90px;
+  color: #bd8495;
+  line-height: 1;
+}
+
+.quote-label,
+.quote-footer {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #8c6875;
+}
+
+.daily-quote-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 4vw, 38px);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 20px 0 30px;
+  color: #493943;
+}
+
+.daily-quote-card button {
+  margin-top: 25px;
+  padding: 12px 24px;
+  border: 1px solid #b98596;
+  border-radius: 30px;
+  background: transparent;
+  color: #493943;
+  cursor: pointer;
+  font: inherit;
+}
+
+.daily-quote-card button:hover {
+  background: #b98596;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .guide-profiles {
+    grid-template-columns: 1fr;
+  }
+
+  .daily-quote-card {
+    padding: 45px 22px;
+  }
+}
+
